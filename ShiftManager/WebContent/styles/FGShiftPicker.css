@@ -1,0 +1,13 @@
+.template {
+	display: none;
+}
+
+.refreshCalendar.button {
+	display: inline-block;
+	width: 100px;
+	background-color: #CCCCFF;
+	border: 1px solid #9999FF;
+	padding: 3px 6px;
+	margin: 3px;
+	cursor: pointer;
+}

@@ -1,0 +1,78 @@
+/**
+//
+// bo_view.jsp styles
+//
+**/
+ul.object,li.field {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li.field {
+	margin: 8px 0 4px 0;
+}
+
+.object .field .label {
+	text-transform: capitalize;
+	font-size: larger;
+	font-weight: bold;
+	display: block;
+}
+
+/**
+//
+// Common styles
+//
+**/
+body,input {
+	font-family: "Trebuchet MS";
+	font-size: small;
+}
+
+.sectionheader {
+	font-size: larger;
+	font-weight: bold;
+}
+
+.fieldset {
+	background-color: #DFDFDF;
+	border: 1px solid #CCC;
+	margin: 3px;
+	padding: 3px;
+}
+
+.button {
+	display: inline-block;
+	background-color: #CCCCFF;
+	border: 1px solid #9999FF;
+	padding: 3px 6px;
+	margin: 3px;
+	cursor: pointer;
+	text-align: center;
+	width: 100px;
+}
+
+input[type=text] {
+	width: 40px;
+}
+
+input.time {
+	width: 60px;
+}
+
+input.positions {
+	text-align: right;
+}
+
+.blue {
+	background-color: teal;
+}
+
+.newrow td {
+	background-color: #ffccff;
+}
+
+.page {
+	width: 600px;
+}

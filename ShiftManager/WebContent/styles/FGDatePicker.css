@@ -1,0 +1,15 @@
+.hidden {
+	display: none;
+}
+
+body a.fgdp.fgdpSelected {
+	background-color: gold;
+}
+
+a.fgdp.fgdpHighlighted {
+	
+}
+
+a.fgdp.blue {
+	background-color: aqua;
+}

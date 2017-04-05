@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+body,input {
+	font-family: "Trebuchet MS"
+}
+
+.row {
+	width: 256px;
+	height: 1px;
+}
+
+#grid {
+	width: 256px;
+	padding: 1px;
+	border: 1px solid rgb(128, 128, 128);
+}
+</style>
+</head>
+<body>
+	<div id='grid'></div>
+	<script type="text/javascript" src="scripts/jquery.min.js"></script>
+	<script>
+		var toHex = function(n) {
+			if (n < 16) {
+				return '0' + n.toString(16);
+			}
+			return n.toString(16);
+		};
+		var axes = {
+			y : 'b',
+			x : 'g',
+			z : 'r'
+		};
+		var toRgb = function(x, y, z) {
+			var rgb = {};
+			rgb[axes['x']] = x;
+			rgb[axes['y']] = y;
+			rgb[axes['z']] = z;
+			return '#' + toHex(rgb['r']) + toHex(rgb['g']) + toHex(rgb['b']);
+		};
+
+		var $grid = $('#grid');
+		var x = 0, y = 0, z = 0;
+		var row;
+		var nextRow = function() {
+			var color, $cell, cell;
+			if (y < 256) {
+				row = document.createElement('div');
+				row.className = 'row';
+				$grid[0].appendChild(row);
+				var from = 'from(' + toRgb(x, y, z) + ')';
+				var to = ', to(' + toRgb(255, y, z) + ')';
+				var gradient = '-webkit-gradient(linear, left top, right top, '
+						+ from + to + ')';
+				$(row).css('background-image', gradient);
+				y++;
+				nextRow();
+			}
+		};
+
+		var nextGrid = function() {
+			if (z < 256) {
+				$grid.css('border-color', '');
+				$grid.html('');
+				y = 128;
+				x = 128;
+				nextRow();
+				// window.setTimeout(nextGrid, 10);
+				z++;
+			} else {
+				$grid.css('border-color', 'red');
+			}
+		};
+
+		z = 128;
+		nextGrid();
+	</script>
+</body>
+</html>

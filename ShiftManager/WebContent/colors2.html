@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+body,input {
+	font-family: "Trebuchet MS"
+}
+
+#color {
+	width: 300px;
+	height: 300px;
+	-webkit-transition-duration: 3s;
+	-webkit-transition-property: background-color;
+}
+
+input {
+	width: 40px;
+}
+
+.plus,.minus {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	border: 1px solid red;
+	margin: 3px;
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+	<span class="color r"><input type='checkbox' id='changeR'
+		checked />R:<input type="text" id="R" value="00"></span>
+	<span class='color g'><input type='checkbox' id='changeG'
+		checked />G:<input type="text" id="G" value="00"></span>
+	<span class="color b"><input type='checkbox' id='changeB'
+		checked />B:<input type="text" id="B" value="FF"></span>
+	<span class="plus">+</span>
+	<span class="minus">-</span>
+	<div>
+		Step: <input type='text' id='step' value='8' />
+	</div>
+	<div id='color'></div>
+	<script type="text/javascript" src="scripts/jquery.min.js"></script>
+	<script>
+		var refresh = function() {
+			var color = '#' + $('#R').val() + $('#G').val() + $('#B').val();
+			$('#color').css('background-color', color);
+		};
+		$('.color input[text]').bind('change', refresh);
+		refresh();
+		var nextStep = function(elemId, step) {
+			if ($('#change' + elemId)[0].checked == false) {
+				return;
+			}
+			var val = $('#' + elemId).val();
+			val = parseInt(val, 16);
+			val += step;
+			val = Math.max(0, Math.min(val, 255));
+			val = val.toString(16);
+			if (val.length == 1) {
+				val = '0' + '' + val;
+			}
+			$('#' + elemId).val(val);
+		};
+		$('.plus, .minus').bind('click', function() {
+			var step = parseInt($('#step').val());
+			if ($(this).hasClass('minus')) {
+				step = -1 * step;
+			}
+			nextStep('R', step);
+			nextStep('G', step);
+			nextStep('B', step);
+			refresh();
+		});
+	</script>
+</body>
+</html>
